@@ -299,7 +299,7 @@ class Database implements ConnectionInterface
      *
      * @throws \Exception
      */
-    public function transaction(\Closure $callback)
+    public function transaction(\Closure $callback, $attempts = 1)
     {
         $this->beginTransaction();
         try {
@@ -409,5 +409,9 @@ class Database implements ConnectionInterface
     public function lastInsertId($args)
     {
         return $this->db->insert_id;
+    }
+
+	public function getName() {
+		return "wpdb";
     }
 }
